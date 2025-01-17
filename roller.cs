@@ -24,15 +24,14 @@ namespace DiceRoller
 
                 counts[dieResult - 2]++; //increment on current die result to track occurrences
             }
-            
+
             for (int i = 0; i < counts.Length; i++) //convert counts to percentages
             {
-                counts[i] = Math.Round(counts[i] * 100 / rolls, 2);
-            }
+                counts[i] = (int)Math.Round(counts[i] * 100.0 / rolls, 0);
 
-            for (int i = 0; i < counts.Length; i++) //print results
-            {
-                Console.WriteLine(i + 2 + ": " + counts[i]);
+                // Print the asterisks based on the percentage value
+                int numAsterisks = (int)(counts[i] / 100.0 * 100); //Unique # of asterisks by percentage
+                Console.WriteLine( i + 2 + ": " + new string('*', numAsterisks));
             }
 
             return counts;
